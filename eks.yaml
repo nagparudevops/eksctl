@@ -1,14 +1,14 @@
+# spot-cluster.yaml
+
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
 metadata:
   name: roboshop
   region: us-east-1
-  availabilityZones:
-    - us-east-1a
-    - us-east-1b
 
-nodeGroups:
-  - name: ng-1
-    instanceType: t3.medium
-    desiredCapacity: 2
+managedNodeGroups:
+- name: spot
+  instanceTypes: ["C7i-flex.large"]
+  spot: true
+  desiredCapacity: 2
