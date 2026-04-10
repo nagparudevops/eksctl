@@ -1,3 +1,5 @@
+# spot-cluster.yaml
+
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
 
@@ -5,10 +7,8 @@ metadata:
   name: roboshop
   region: us-east-1
 
-iam:
-  withOIDC: true   # ✅ important fix
-
-nodeGroups:
-  - name: ng-1
-    instanceType: t3.medium   # ❗ change from t3.micro
-    desiredCapacity: 2
+managedNodeGroups:
+- name: spot
+  instanceTypes: ["T3.small","T4g.small","C7i-flex.large"]
+  spot: true
+  desiredCapacity: 2
